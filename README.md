@@ -28,3 +28,8 @@ For more advanced usage:
 		// ...
 	}
 
+# API Documentation
+
+The [JavaDoc API](http://shevek.github.io/gradle-velocity-plugin/docs/javadoc/)
+is also available.
+
