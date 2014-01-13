@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * The velocity plugin extension.
+ *
+ * This allows configuring the velocity plugin using a
+ * <code>velocity { }</code> block.
  *
  * @author shevek
  */

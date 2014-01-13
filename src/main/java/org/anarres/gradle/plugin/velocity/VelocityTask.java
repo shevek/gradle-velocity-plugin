@@ -23,6 +23,10 @@ import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.OutputDirectory;
 
 /**
+ * A bare velocity task.
+ *
+ * You may use this to do arbitrary velocity processing without
+ * necessarily applying the plugin.
  *
  * @author shevek
  */

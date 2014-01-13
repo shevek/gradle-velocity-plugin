@@ -32,3 +32,10 @@ dependencies {
 
 	testCompile 'junit:junit:4.8.1'
 }
+
+javadoc {
+	options.links "http://docs.oracle.com/javase/6/docs/api/",
+			"http://www.gradle.org/docs/current/javadoc/",
+			"http://groovy.codehaus.org/api/"
+	options.splitIndex true
+}
