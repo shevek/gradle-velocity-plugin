@@ -1,0 +1,22 @@
+plugindev {
+	pluginImplementationClass 'org.anarres.gradle.plugin.velocity.VelocityPlugin'
+	pluginDescription "A gradle plugin for the Velocity pre-processor."
+	pluginLicenses 'Apache-2.0'
+	pluginTags 'gradle', 'plugin', 'velocity', 'preprocessor', 'filter'
+	authorId 'shevek'
+	authorName 'Shevek'
+	authorEmail 'github@anarres.org'
+	projectUrl "https://github.com/shevek/${rootProject.githubProjectName}"
+	projectIssuesUrl "https://github.com/shevek/${rootProject.githubProjectName}/issues"
+	projectVcsUrl "https://github.com/shevek/${rootProject.githubProjectName}.git"
+	projectInceptionYear '2014'
+	done()
+}
+
+println "user = " + bintrayUsername
+
+bintray {
+	user = bintrayUsername
+	key = bintrayApiKey
+	pkg.repo = 'gradle-plugins'
+}

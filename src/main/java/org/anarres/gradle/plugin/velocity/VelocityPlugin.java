@@ -29,6 +29,8 @@ public class VelocityPlugin implements Plugin<Project> {
                 // TODO: This isn't lazy evaluation. :-(
                 task.inputDir = project.file(extension.inputDir);
                 task.outputDir = project.file(extension.outputDir);
+                if (extension.includeDir != null)
+                    task.includeDir = project.file(extension.includeDir);
                 task.contextValues = extension.contextValues;
             }
         });

@@ -10,13 +10,15 @@ into build/generated-sources/velocity:
 
 	buildscript {
 		dependencies {
-			compile 'org.anarres.gradle:gradle-velocity-plugin:1.0.0'
+			classpath 'org.anarres.gradle:gradle-velocity-plugin:[1.0.0,)'
 		}
 	}
 
 	apply plugin: 'velocity'
 
 	velocity {
+		includeDir ...
+
 		context {
 			// Configure a HashMap with context values.
 		}

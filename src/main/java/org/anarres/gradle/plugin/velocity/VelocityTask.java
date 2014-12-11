@@ -15,8 +15,8 @@ import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.Task;
 import org.gradle.api.file.ConfigurableFileTree;
+import org.gradle.api.file.EmptyFileVisitor;
 import org.gradle.api.file.FileVisitDetails;
-import org.gradle.api.file.FileVisitor;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.Optional;
@@ -59,17 +59,12 @@ public class VelocityTask extends DefaultTask {
                 engine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
                 if (includeDir != null)
                     engine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeDir.getAbsolutePath());
+                else
+                    engine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, inputDir.getAbsolutePath());
 
-                Map<String, Object> inputFilesSpec = new HashMap<String, Object>();
-                inputFilesSpec.put("dir", inputDir);
-                inputFilesSpec.put("include", filter);
-                ConfigurableFileTree inputFiles = getProject().fileTree(inputFilesSpec);
-                inputFiles.visit(new FileVisitor() {
-
-                    @Override
-                    public void visitDir(FileVisitDetails fvd) {
-                    }
-
+                ConfigurableFileTree inputFiles = getProject().fileTree(inputDir);
+                inputFiles.include(filter);
+                inputFiles.visit(new EmptyFileVisitor() {
                     @Override
                     public void visitFile(FileVisitDetails fvd) {
                         try {

@@ -19,11 +19,14 @@ public class VelocityPluginExtension {
 
     public String inputDir = DEFAULT_INPUT_DIR;
     public String outputDir = DEFAULT_OUTPUT_DIR;
+    public String includeDir = null;
     public Map<String, Object> contextValues = new HashMap<String, Object>();
 
+    /*
     public Map<String, Object> getContext() {
         return contextValues;
     }
+    */
 
     void context(Map<String, Object> map) {
         contextValues.putAll(map);
