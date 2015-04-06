@@ -57,6 +57,7 @@ public class VelocityTask extends DefaultTask {
                 setProperty(engine, VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS, SystemLogChute.class.getName());
                 setProperty(engine, VelocityEngine.RESOURCE_LOADER, "file");
                 setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
+                // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list. 
                 if (includeDir != null)
                     setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeDir.getAbsolutePath());
                 else
