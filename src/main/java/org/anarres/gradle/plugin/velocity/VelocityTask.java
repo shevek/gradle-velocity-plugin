@@ -54,13 +54,13 @@ public class VelocityTask extends DefaultTask {
                 outputDir.mkdirs();
 
                 final VelocityEngine engine = new VelocityEngine();
-                engine.setProperty(VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS, SystemLogChute.class.getName());
-                engine.setProperty(VelocityEngine.RESOURCE_LOADER, "file");
-                engine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
+                setProperty(engine, VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS, SystemLogChute.class.getName());
+                setProperty(engine, VelocityEngine.RESOURCE_LOADER, "file");
+                setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
                 if (includeDir != null)
-                    engine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeDir.getAbsolutePath());
+                    setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeDir.getAbsolutePath());
                 else
-                    engine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, inputDir.getAbsolutePath());
+                    setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, inputDir.getAbsolutePath());
 
                 ConfigurableFileTree inputFiles = getProject().fileTree(inputDir);
                 inputFiles.include(filter);
@@ -69,6 +69,8 @@ public class VelocityTask extends DefaultTask {
                     public void visitFile(FileVisitDetails fvd) {
                         try {
                             File outputFile = fvd.getRelativePath().getFile(outputDir);
+                            if (getLogger().isDebugEnabled())
+                                getLogger().debug("Preprocessing " + fvd.getFile() + " -> " + outputFile);
                             VelocityContext context = new VelocityContext();
                             for (Map.Entry<String, Object> e : contextValues.entrySet())
                                 context.put(e.getKey(), e.getValue());
@@ -94,5 +96,11 @@ public class VelocityTask extends DefaultTask {
                 });
             }
         });
+    }
+
+    private void setProperty(VelocityEngine engine, String name, Object value) {
+        if (getLogger().isDebugEnabled())
+            getLogger().debug("VelocityEngine property: " + name + " = " + value);
+        engine.setProperty(name, value);
     }
 }
