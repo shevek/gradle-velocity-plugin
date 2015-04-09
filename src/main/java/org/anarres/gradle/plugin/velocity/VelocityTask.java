@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -41,7 +43,7 @@ public class VelocityTask extends DefaultTask {
     public String filter = "**/*.java";
     @Optional
     @InputDirectory
-    public File includeDir;
+    public List<File> includeDirs = new ArrayList<File>();
     @Input
     public Map<String, Object> contextValues = new HashMap<String, Object>();
 
@@ -58,10 +60,13 @@ public class VelocityTask extends DefaultTask {
                 setProperty(engine, VelocityEngine.RESOURCE_LOADER, "file");
                 setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
                 // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list. 
-                if (includeDir != null)
-                    setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeDir.getAbsolutePath());
-                else
-                    setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, inputDir.getAbsolutePath());
+                StringBuilder includeBuf = new StringBuilder();
+                includeBuf.append(inputDir.getAbsolutePath());
+                for (File includeDir : includeDirs) {
+                    includeBuf.append(", ");
+                    includeBuf.append(includeDir.getAbsolutePath());
+                }
+                setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeBuf.toString());
 
                 ConfigurableFileTree inputFiles = getProject().fileTree(inputDir);
                 inputFiles.include(filter);

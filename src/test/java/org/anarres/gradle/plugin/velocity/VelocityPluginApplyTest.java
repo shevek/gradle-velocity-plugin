@@ -30,6 +30,6 @@ public class VelocityPluginApplyTest {
         Task task = project.getTasks().findByName("velocityVpp");
         assertNotNull("Project is missing velocity task", task);
         assertTrue("Velocity task is the wrong type", task instanceof DefaultTask);
-        assertTrue("Velocity task should be enabled", ((DefaultTask)task).isEnabled());
+        assertTrue("Velocity task should be enabled", ((DefaultTask) task).isEnabled());
     }
 }

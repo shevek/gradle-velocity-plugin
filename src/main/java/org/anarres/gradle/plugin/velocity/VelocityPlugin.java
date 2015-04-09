@@ -1,5 +1,10 @@
 package org.anarres.gradle.plugin.velocity;
 
+import groovy.lang.Closure;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -26,12 +31,37 @@ public class VelocityPlugin implements Plugin<Project> {
             @Override
             public void execute(VelocityTask task) {
                 task.setDescription("Preprocesses velocity template files.");
-                // TODO: This isn't lazy evaluation. :-(
-                task.inputDir = project.file(extension.inputDir);
-                task.outputDir = project.file(extension.outputDir);
-                if (extension.includeDir != null)
-                    task.includeDir = project.file(extension.includeDir);
-                task.contextValues = extension.contextValues;
+                task.getConvention().add("inputDir", new Closure<File>(extension) {
+                    @Override
+                    public File call(Object... args) {
+                        return project.file(extension.inputDir);
+                    }
+                });
+                task.getConvention().add("includeDirs", new Closure<List<File>>(extension) {
+                    @Override
+                    public List<File> call(Object... args) {
+                        List<Object> includeDirs = extension.includeDirs;
+                        if (includeDirs == null)
+                            return null;
+                        List<File> out = new ArrayList<File>();
+                        for (Object includeDir : includeDirs)
+                            out.add(project.file(includeDir));
+                        return out;
+                    }
+                });
+                task.getConvention().add("outputDir", new Closure<File>(extension) {
+                    @Override
+                    public File call(Object... args) {
+                        return project.file(extension.outputDir);
+                    }
+                });
+                task.getConvention().add("contextValues", new Closure<Map<String, Object>>(extension) {
+                    @Override
+                    public Map<String, Object> call(Object... args) {
+                        return extension.contextValues;
+                    }
+
+                });
             }
         });
 
