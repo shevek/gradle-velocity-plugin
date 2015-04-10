@@ -1,10 +1,10 @@
 package org.anarres.gradle.plugin.velocity;
 
-import groovy.lang.Closure;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -31,15 +31,15 @@ public class VelocityPlugin implements Plugin<Project> {
             @Override
             public void execute(VelocityTask task) {
                 task.setDescription("Preprocesses velocity template files.");
-                task.getConvention().add("inputDir", new Closure<File>(extension) {
+                task.conventionMapping("inputDir", new Callable<File>() {
                     @Override
-                    public File call(Object... args) {
+                    public File call() {
                         return project.file(extension.inputDir);
                     }
                 });
-                task.getConvention().add("includeDirs", new Closure<List<File>>(extension) {
+                task.conventionMapping("includeDirs", new Callable<List<File>>() {
                     @Override
-                    public List<File> call(Object... args) {
+                    public List<File> call() {
                         List<Object> includeDirs = extension.includeDirs;
                         if (includeDirs == null)
                             return null;
@@ -49,15 +49,15 @@ public class VelocityPlugin implements Plugin<Project> {
                         return out;
                     }
                 });
-                task.getConvention().add("outputDir", new Closure<File>(extension) {
+                task.conventionMapping("outputDir", new Callable<File>() {
                     @Override
-                    public File call(Object... args) {
+                    public File call() {
                         return project.file(extension.outputDir);
                     }
                 });
-                task.getConvention().add("contextValues", new Closure<Map<String, Object>>(extension) {
+                task.conventionMapping("contextValues", new Callable<Map<String, Object>>() {
                     @Override
-                    public Map<String, Object> call(Object... args) {
+                    public Map<String, Object> call() {
                         return extension.contextValues;
                     }
 
