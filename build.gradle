@@ -16,7 +16,7 @@ apply from: file('gradle/check.gradle')
 apply from: file('gradle/license.gradle')
 
 dependencies {
-	// compile 'com.google.code.findbugs:jsr305:2.0.2'
+	compile 'com.google.code.findbugs:jsr305:2.0.2'
 	compile gradleApi()
 	compile 'org.apache.velocity:velocity:1.7'
 
