@@ -16,16 +16,6 @@ apply from: file('gradle/check.gradle')
 apply from: file('gradle/license.gradle')
 
 dependencies {
-	compile 'com.google.code.findbugs:jsr305:2.0.2'
 	compile gradleApi()
 	compile 'org.apache.velocity:velocity:1.7'
-
-	testCompile 'junit:junit:4.11'
-}
-
-javadoc {
-	options.links "http://docs.oracle.com/javase/6/docs/api/",
-			"http://www.gradle.org/docs/current/javadoc/",
-			"http://groovy.codehaus.org/api/"
-	options.splitIndex true
 }

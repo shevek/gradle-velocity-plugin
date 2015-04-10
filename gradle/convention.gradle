@@ -16,7 +16,7 @@
 
 	dependencies {
 		compile 'com.google.code.findbugs:jsr305:2.0.2'
-		compile 'org.slf4j:slf4j-api:1.7.12'
+		// compile 'org.slf4j:slf4j-api:1.7.12'
 
 		testCompile 'junit:junit:4.12'
 
@@ -31,7 +31,9 @@
 		if (!gradle.startParameter.offline)
 			options.links "http://docs.oracle.com/javase/7/docs/api/",
 				"http://docs.oracle.com/javaee/7/api/",
-				"http://docs.guava-libraries.googlecode.com/git/javadoc/"
+				"http://docs.guava-libraries.googlecode.com/git/javadoc/",
+				"http://www.gradle.org/docs/current/javadoc/",
+				"http://groovy.codehaus.org/api/"
 
 		if (JavaVersion.current().isJava8Compatible())
 			options.addStringOption('Xdoclint:none', '-quiet')
@@ -62,6 +64,10 @@
 			}
 		}
 	}
+
+apply plugin: 'build-announcements'
+apply plugin: 'build-dashboard'
+apply plugin: 'project-report'
 
 // Generate wrapper, which is distributed as part of source to alleviate the need of installing gradle
 wrapper {

@@ -2,7 +2,7 @@
 repositories {
 	// mavenLocal()
 	mavenCentral()
-	// jcenter()
+	jcenter()
 }
 
 dependencies {

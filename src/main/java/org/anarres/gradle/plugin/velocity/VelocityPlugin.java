@@ -27,16 +27,17 @@ public class VelocityPlugin implements Plugin<Project> {
     public void apply(final Project project) {
         final VelocityPluginExtension extension = project.getExtensions().create("velocity", VelocityPluginExtension.class);
         Task velocityVppTask = project.getTasks().create("velocityVpp", VelocityTask.class, new Action<VelocityTask>() {
-
             @Override
             public void execute(VelocityTask task) {
                 task.setDescription("Preprocesses velocity template files.");
+
                 task.conventionMapping("inputDir", new Callable<File>() {
                     @Override
                     public File call() {
                         return project.file(extension.inputDir);
                     }
                 });
+
                 task.conventionMapping("includeDirs", new Callable<List<File>>() {
                     @Override
                     public List<File> call() {
@@ -49,18 +50,19 @@ public class VelocityPlugin implements Plugin<Project> {
                         return out;
                     }
                 });
+
                 task.conventionMapping("outputDir", new Callable<File>() {
                     @Override
                     public File call() {
                         return project.file(extension.outputDir);
                     }
                 });
+
                 task.conventionMapping("contextValues", new Callable<Map<String, Object>>() {
                     @Override
                     public Map<String, Object> call() {
                         return extension.contextValues;
                     }
-
                 });
             }
         });
