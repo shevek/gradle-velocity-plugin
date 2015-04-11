@@ -32,8 +32,9 @@
 			options.links "http://docs.oracle.com/javase/7/docs/api/",
 				"http://docs.oracle.com/javaee/7/api/",
 				"http://docs.guava-libraries.googlecode.com/git/javadoc/",
-				"http://www.gradle.org/docs/current/javadoc/",
-				"http://groovy.codehaus.org/api/"
+				"http://gradle.org/docs/current/javadoc/",
+				"http://groovy.codehaus.org/api/",
+				"http://twall.github.io/jna/4.1.0/"
 
 		if (JavaVersion.current().isJava8Compatible())
 			options.addStringOption('Xdoclint:none', '-quiet')

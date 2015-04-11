@@ -1,5 +1,27 @@
+def pluginIds = [ 'org.anarres.velocity', 'velocity' ];
+def pluginImplementation = 'org.anarres.gradle.plugin.velocity.VelocityPlugin'
+def pluginDescriptorDir = new File(project.buildDir, "generated-resources/gradle-plugin");
+
+task generatePluginDescriptor {
+	outputs.dir pluginDescriptorDir
+	doLast {
+		pluginDescriptorDir.deleteDir();
+		for (String pluginId : pluginIds) {
+			println "Id is ${pluginId} in ${pluginIds}";
+			File pluginDescriptorFile = new File(pluginDescriptorDir, "META-INF/gradle-plugins/${pluginId}.properties");
+			pluginDescriptorFile.getParentFile().mkdirs();
+			pluginDescriptorFile.withWriter { w ->
+				w.write("implementation-class=${pluginImplementation}\n" +
+						"implementation-version=${project.version}\n");
+			}
+		}
+	}
+}
+sourceSets.main.output.dir(pluginDescriptorDir, builtBy: generatePluginDescriptor);
+
+/*
 plugindev {
-	pluginImplementationClass 'org.anarres.gradle.plugin.velocity.VelocityPlugin'
+	pluginImplementationClass pluginImplementation
 	pluginDescription "A gradle plugin for the Velocity pre-processor."
 	pluginLicenses 'Apache-2.0'
 	pluginTags 'gradle', 'plugin', 'velocity', 'preprocessor', 'filter'
@@ -18,3 +40,4 @@ bintray {
 	key = rootProject.hasProperty('bintrayApiKey')?rootProject.bintrayApiKey:''
 	pkg.repo = 'gradle-plugins'
 }
+*/

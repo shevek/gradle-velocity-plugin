@@ -3,7 +3,7 @@ buildscript {
 }
 
 plugins {
-	id 'nu.studer.plugindev' version '1.0.3'
+	// id 'nu.studer.plugindev' version '1.0.3'
 }
 
 ext.githubProjectName = rootProject.name
@@ -11,9 +11,10 @@ group = "org.anarres.gradle"
 
 apply from: file('gradle/convention.gradle')
 apply from: file('gradle/github.gradle')
-apply from: file('gradle/plugin.gradle')
+apply from: file('gradle/nexus.gradle')
 apply from: file('gradle/check.gradle')
 apply from: file('gradle/license.gradle')
+apply from: file('gradle/plugin.gradle')
 
 dependencies {
 	compile gradleApi()
