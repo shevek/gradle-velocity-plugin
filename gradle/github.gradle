@@ -11,10 +11,9 @@ def docTasks = [:]
 			if (delegate.hasProperty('options'))	// Groovydoc has no options
 				options.links "http://docs.oracle.com/javase/7/docs/api/",
 					"http://docs.oracle.com/javaee/7/api/",
-					"http://docs.guava-libraries.googlecode.com/git/javadoc/",
 					"http://gradle.org/docs/current/javadoc/",
 					"http://groovy.codehaus.org/api/",
-					"http://twall.github.io/jna/4.1.0/"
+					"http://docs.guava-libraries.googlecode.com/git/javadoc/"
 			doFirst {
 				def classpaths = allprojects.findAll { it.plugins.hasPlugin(JavaPlugin) }.collect { it.sourceSets.main.compileClasspath }
 				classpath = files(classpaths)

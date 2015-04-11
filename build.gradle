@@ -6,6 +6,10 @@ plugins {
 	// id 'nu.studer.plugindev' version '1.0.3'
 }
 
+task buildscriptDependencies << {
+	project.buildscript.configurations.getByName('classpath').each { println it.name }
+}
+
 ext.githubProjectName = rootProject.name
 group = "org.anarres.gradle"
 

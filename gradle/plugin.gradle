@@ -7,7 +7,7 @@ task generatePluginDescriptor {
 	doLast {
 		pluginDescriptorDir.deleteDir();
 		for (String pluginId : pluginIds) {
-			println "Id is ${pluginId} in ${pluginIds}";
+			// println "Id is ${pluginId} in ${pluginIds}";
 			File pluginDescriptorFile = new File(pluginDescriptorDir, "META-INF/gradle-plugins/${pluginId}.properties");
 			pluginDescriptorFile.getParentFile().mkdirs();
 			pluginDescriptorFile.withWriter { w ->
@@ -22,7 +22,7 @@ sourceSets.main.output.dir(pluginDescriptorDir, builtBy: generatePluginDescripto
 /*
 plugindev {
 	pluginImplementationClass pluginImplementation
-	pluginDescription "A gradle plugin for the Velocity pre-processor."
+	pluginDescription "A Gradle plugin for the Velocity pre-processor."
 	pluginLicenses 'Apache-2.0'
 	pluginTags 'gradle', 'plugin', 'velocity', 'preprocessor', 'filter'
 	authorId 'shevek'

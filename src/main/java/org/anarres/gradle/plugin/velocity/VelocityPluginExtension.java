@@ -1,6 +1,7 @@
 package org.anarres.gradle.plugin.velocity;
 
 import groovy.lang.Closure;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class VelocityPluginExtension {
 
     public Object inputDir = DEFAULT_INPUT_DIR;
     public Object outputDir = DEFAULT_OUTPUT_DIR;
-    public List<Object> includeDirs = null;
+    public List<Object> includeDirs = new ArrayList<Object>();
     public Map<String, Object> contextValues = new HashMap<String, Object>();
 
     /*

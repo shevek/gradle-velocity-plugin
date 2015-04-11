@@ -14,7 +14,7 @@
 		// Closure to configure all the POM with extra info, common to all projects
 		project {
 			name "${project.name}"
-			description "A gradle plugin for the Velocity pre-processor."
+			description "A Gradle plugin for the Velocity pre-processor."
 			developers {
 				developer {
 					id 'shevek'

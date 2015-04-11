@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.CheckForNull;
@@ -23,6 +21,7 @@ import org.gradle.api.internal.ConventionTask;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.InputFiles;
+import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.OutputDirectory;
 import org.gradle.api.tasks.TaskAction;
 
@@ -40,11 +39,11 @@ public class VelocityTask extends ConventionTask {
     private File outputDir;
 
     private String filter = "**/*.java";
-    private List<File> includeDirs = new ArrayList<File>();
-    private Map<String, Object> contextValues = new HashMap<String, Object>();
+    private List<File> includeDirs;
+    private Map<String, Object> contextValues;
 
     @InputDirectory
-    @Nonnull
+    @Nonnull    // Not @Optional
     public File getInputDir() {
         return inputDir;
     }
@@ -54,7 +53,7 @@ public class VelocityTask extends ConventionTask {
     }
 
     @OutputDirectory
-    @Nonnull
+    @Nonnull    // Not @Optional
     public File getOutputDir() {
         return outputDir;
     }
@@ -74,7 +73,8 @@ public class VelocityTask extends ConventionTask {
     }
 
     @Input
-    @Nonnull
+    @Optional
+    @CheckForNull
     public List<File> getIncludeDirs() {
         return includeDirs;
     }
@@ -84,16 +84,19 @@ public class VelocityTask extends ConventionTask {
     }
 
     @InputFiles
-    @Nonnull
+    @Nonnull    // Not @Optional
     private FileCollection _getIncludeFiles() {
         FileCollection files = getProject().files();
-        for (File f : getIncludeDirs())
-            files = files.plus(getProject().fileTree(f));
+        List<File> includeDirs = getIncludeDirs();
+        if (includeDirs != null)
+            for (File f : includeDirs)
+                files = files.plus(getProject().fileTree(f));
         return files;
     }
 
     @Input
-    @Nonnull
+    @Optional
+    @CheckForNull
     public Map<String, Object> getContextValues() {
         return contextValues;
     }
@@ -110,6 +113,7 @@ public class VelocityTask extends ConventionTask {
 
     @TaskAction
     public void runVelocity() throws Exception {
+        final File inputDir = getInputDir();
         final File outputDir = getOutputDir();
 
         DefaultGroovyMethods.deleteDir(outputDir);
@@ -121,14 +125,14 @@ public class VelocityTask extends ConventionTask {
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
         // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list. 
         StringBuilder includeBuf = new StringBuilder();
-        includeBuf.append(getInputDir().getAbsolutePath());
+        includeBuf.append(inputDir.getAbsolutePath());
         for (File includeDir : getIncludeDirs()) {
             includeBuf.append(", ");
             includeBuf.append(includeDir.getAbsolutePath());
         }
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeBuf.toString());
 
-        ConfigurableFileTree inputFiles = getProject().fileTree(getInputDir());
+        ConfigurableFileTree inputFiles = getProject().fileTree(inputDir);
         inputFiles.include(getFilter());
         inputFiles.visit(new EmptyFileVisitor() {
             @Override
@@ -138,8 +142,10 @@ public class VelocityTask extends ConventionTask {
                     if (getLogger().isDebugEnabled())
                         getLogger().debug("Preprocessing " + fvd.getFile() + " -> " + outputFile);
                     VelocityContext context = new VelocityContext();
-                    for (Map.Entry<String, Object> e : getContextValues().entrySet())
-                        context.put(e.getKey(), e.getValue());
+                    Map<String, Object> contextValues = getContextValues();
+                    if (contextValues != null)
+                        for (Map.Entry<String, Object> e : contextValues.entrySet())
+                            context.put(e.getKey(), e.getValue());
                     context.put("project", getProject());
                     context.put("package", DefaultGroovyMethods.join(fvd.getRelativePath().getParent().getSegments(), "."));
                     context.put("class", fvd.getRelativePath().getLastName().replaceFirst("\\.java$", ""));

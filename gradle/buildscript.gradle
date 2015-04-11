@@ -1,7 +1,7 @@
 // Executed in context of buildscript
 repositories {
-	// maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 	// mavenLocal()
+	// maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 	mavenCentral()
 	jcenter()
 }
