@@ -15,13 +15,13 @@
 		mavenCentral()
 		// jcenter()
 	}
-	
+
     publishing {
-      publications {
-        mavenJar(MavenPublication) {
-          from components.java
-        }
-      }
+        publications {
+            mavenJar(MavenPublication) {
+        	  	from components.java
+        	}
+      	}
     }
 
 	dependencies {
