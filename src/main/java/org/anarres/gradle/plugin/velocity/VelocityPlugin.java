@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -62,6 +63,13 @@ public class VelocityPlugin implements Plugin<Project> {
                     @Override
                     public Map<String, Object> call() {
                         return extension.contextValues;
+                    }
+                });
+
+                task.conventionMapping("filter", new Callable<String>() {
+                    @Override
+                    public String call() throws Exception {
+                        return extension.filter;
                     }
                 });
             }
