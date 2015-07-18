@@ -2,6 +2,8 @@
 	// apply plugin: 'errorprone'
 	apply plugin: 'info'
 	apply plugin: 'com.github.ben-manes.versions'
+	apply plugin: 'eclipse'
+	apply plugin: 'maven-publish'
 
 	sourceCompatibility = 1.6
 
@@ -13,6 +15,14 @@
 		mavenCentral()
 		// jcenter()
 	}
+
+    publishing {
+        publications {
+            mavenJar(MavenPublication) {
+        	  	from components.java
+        	}
+      	}
+    }
 
 	dependencies {
 		compile 'com.google.code.findbugs:jsr305:2.0.2'

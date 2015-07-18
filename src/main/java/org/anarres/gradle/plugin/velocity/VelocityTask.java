@@ -38,7 +38,7 @@ public class VelocityTask extends ConventionTask {
     private File inputDir;
     private File outputDir;
 
-    private String filter = "**/*.java";
+    private String filter;
     private List<File> includeDirs;
     private Map<String, Object> contextValues;
 
@@ -123,7 +123,7 @@ public class VelocityTask extends ConventionTask {
         setProperty(engine, VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS, SystemLogChute.class.getName());
         setProperty(engine, VelocityEngine.RESOURCE_LOADER, "file");
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
-        // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list. 
+        // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list.
         StringBuilder includeBuf = new StringBuilder();
         includeBuf.append(inputDir.getAbsolutePath());
         for (File includeDir : getIncludeDirs()) {
