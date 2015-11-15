@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.log.SystemLogChute;
@@ -38,7 +39,7 @@ public class VelocityTask extends ConventionTask {
     private File inputDir;
     private File outputDir;
 
-    private String filter = "**/*.java";
+    private String[] includeFilter = new String[]{"**/*.java"};
     private List<File> includeDirs;
     private Map<String, Object> contextValues;
 
@@ -64,12 +65,19 @@ public class VelocityTask extends ConventionTask {
 
     @Input
     @Nonnull
-    public String getFilter() {
-        return filter;
+    public String[] getIncludeFilter() {
+        return includeFilter;
+    }
+
+    public void setIncludeFilter(@Nonnull String... includeFilter) {
+        this.includeFilter = includeFilter;
     }
 
     public void setFilter(@CheckForNull String filter) {
-        this.filter = filter;
+        if (filter == null)
+            setIncludeFilter(ArrayUtils.EMPTY_STRING_ARRAY);
+        else
+            setIncludeFilter(new String[]{filter});
     }
 
     @Input
@@ -133,7 +141,7 @@ public class VelocityTask extends ConventionTask {
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeBuf.toString());
 
         ConfigurableFileTree inputFiles = getProject().fileTree(inputDir);
-        inputFiles.include(getFilter());
+        inputFiles.include(getIncludeFilter());
         inputFiles.visit(new EmptyFileVisitor() {
             @Override
             public void visitFile(FileVisitDetails fvd) {
