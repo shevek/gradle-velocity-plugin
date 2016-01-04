@@ -1,48 +1,84 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.23008849557522124" branch-rate="0.0" lines-covered="26" lines-valid="113" branches-covered="0" branches-valid="20" complexity="1.565217391304348" version="2.0.3" timestamp="1447629620277">
+<coverage line-rate="0.31386861313868614" branch-rate="0.0" lines-covered="43" lines-valid="137" branches-covered="0" branches-valid="28" complexity="1.6071428571428572" version="2.0.3" timestamp="1451871650356">
 	<sources>
 		<source>/home/shevek/java/gradle-velocity-plugin/src/main/java</source>
 	</sources>
 	<packages>
-		<package name="org.anarres.gradle.plugin.velocity" line-rate="0.23008849557522124" branch-rate="0.0" complexity="1.565217391304348">
+		<package name="org.anarres.gradle.plugin.velocity" line-rate="0.31386861313868614" branch-rate="0.0" complexity="1.6071428571428572">
 			<classes>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="1.0" branch-rate="1.0" complexity="1.5">
+				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="1.0" branch-rate="1.0" complexity="1.4285714285714286">
 					<methods>
-						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+						<method name="&lt;init&gt;" signature="(Lorg/gradle/api/internal/file/FileResolver;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
+								<line number="31" hits="1" branch="false"/>
+								<line number="32" hits="1" branch="false"/>
+								<line number="33" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="access$000" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin;Lorg/gradle/api/Project;Lorg/gradle/api/tasks/SourceSet;Lorg/anarres/gradle/plugin/velocity/VelocityPluginExtension;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="26" hits="3" branch="false"/>
 							</lines>
 						</method>
 						<method name="apply" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="24" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="apply" signature="(Lorg/gradle/api/Project;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="28" hits="1" branch="false"/>
-								<line number="29" hits="1" branch="false"/>
-								<line number="70" hits="1" branch="false"/>
-								<line number="71" hits="1" branch="false"/>
-								<line number="72" hits="1" branch="false"/>
-								<line number="73" hits="1" branch="false"/>
-								<line number="74" hits="1" branch="false"/>
+								<line number="37" hits="1" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
+								<line number="46" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="apply" signature="(Lorg/gradle/api/Project;Lorg/gradle/api/tasks/SourceSet;Lorg/anarres/gradle/plugin/velocity/VelocityPluginExtension;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="49" hits="2" branch="false"/>
+								<line number="50" hits="2" branch="false"/>
+								<line number="51" hits="2" branch="false"/>
+								<line number="52" hits="2" branch="false"/>
+								<line number="53" hits="2" branch="false"/>
+								<line number="55" hits="2" branch="false"/>
+								<line number="56" hits="2" branch="false"/>
+								<line number="83" hits="2" branch="false"/>
+								<line number="85" hits="4" branch="false"/>
+								<line number="86" hits="2" branch="false"/>
+								<line number="87" hits="2" branch="false"/>
+								<line number="88" hits="2" branch="false"/>
+								<line number="89" hits="2" branch="false"/>
+								<line number="91" hits="2" branch="false"/>
+								<line number="92" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="24" hits="2" branch="false"/>
-						<line number="28" hits="1" branch="false"/>
-						<line number="29" hits="1" branch="false"/>
-						<line number="70" hits="1" branch="false"/>
-						<line number="71" hits="1" branch="false"/>
-						<line number="72" hits="1" branch="false"/>
-						<line number="73" hits="1" branch="false"/>
-						<line number="74" hits="1" branch="false"/>
+						<line number="26" hits="3" branch="false"/>
+						<line number="31" hits="1" branch="false"/>
+						<line number="32" hits="1" branch="false"/>
+						<line number="33" hits="1" branch="false"/>
+						<line number="37" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
+						<line number="46" hits="1" branch="false"/>
+						<line number="49" hits="2" branch="false"/>
+						<line number="50" hits="2" branch="false"/>
+						<line number="51" hits="2" branch="false"/>
+						<line number="52" hits="2" branch="false"/>
+						<line number="53" hits="2" branch="false"/>
+						<line number="55" hits="2" branch="false"/>
+						<line number="56" hits="2" branch="false"/>
+						<line number="83" hits="2" branch="false"/>
+						<line number="85" hits="4" branch="false"/>
+						<line number="86" hits="2" branch="false"/>
+						<line number="87" hits="2" branch="false"/>
+						<line number="88" hits="2" branch="false"/>
+						<line number="89" hits="2" branch="false"/>
+						<line number="91" hits="2" branch="false"/>
+						<line number="92" hits="2" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$1" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="1.0" branch-rate="1.0" complexity="1.5">
+				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$1" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="1.0" branch-rate="1.0" complexity="1.4285714285714286">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin;Lorg/gradle/api/Project;Lorg/anarres/gradle/plugin/velocity/VelocityPluginExtension;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -50,284 +86,268 @@
 						</method>
 						<method name="execute" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="29" hits="2" branch="false"/>
+								<line number="40" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="execute" signature="(Lorg/gradle/api/tasks/SourceSet;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="43" hits="2" branch="false"/>
+								<line number="44" hits="2" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="40" hits="3" branch="false"/>
+						<line number="43" hits="2" branch="false"/>
+						<line number="44" hits="2" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$2" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="1.0" branch-rate="1.0" complexity="1.4285714285714286">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin;Lorg/anarres/gradle/plugin/velocity/VelocityPluginExtension;Lorg/gradle/api/Project;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="execute" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="56" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="execute" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityTask;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="32" hits="1" branch="false"/>
-								<line number="34" hits="1" branch="false"/>
-								<line number="41" hits="1" branch="false"/>
-								<line number="54" hits="1" branch="false"/>
-								<line number="61" hits="1" branch="false"/>
-								<line number="67" hits="1" branch="false"/>
+								<line number="59" hits="2" branch="false"/>
+								<line number="61" hits="2" branch="false"/>
+								<line number="74" hits="2" branch="false"/>
+								<line number="80" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="29" hits="2" branch="false"/>
-						<line number="32" hits="1" branch="false"/>
-						<line number="34" hits="1" branch="false"/>
-						<line number="41" hits="1" branch="false"/>
-						<line number="54" hits="1" branch="false"/>
-						<line number="61" hits="1" branch="false"/>
-						<line number="67" hits="1" branch="false"/>
+						<line number="56" hits="4" branch="false"/>
+						<line number="59" hits="2" branch="false"/>
+						<line number="61" hits="2" branch="false"/>
+						<line number="74" hits="2" branch="false"/>
+						<line number="80" hits="2" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$1$1" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="0.5" branch-rate="1.0" complexity="1.5">
+				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$2$1" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="0.125" branch-rate="0.0" complexity="1.4285714285714286">
 					<methods>
-						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin$1;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-						<method name="call" signature="()Ljava/io/File;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="37" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="call" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="34" hits="1" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="34" hits="1" branch="false"/>
-						<line number="37" hits="0" branch="false"/>
-					</lines>
-				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$1$2" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="0.125" branch-rate="0.0" complexity="1.5">
-					<methods>
-						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin$1;)V" line-rate="1.0" branch-rate="1.0">
+						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin$2;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
 							</lines>
 						</method>
 						<method name="call" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="41" hits="1" branch="false"/>
+								<line number="61" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="call" signature="()Ljava/util/List;" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="44" hits="0" branch="false"/>
-								<line number="45" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="64" hits="0" branch="false"/>
+								<line number="65" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="46" hits="0" branch="false"/>
-								<line number="47" hits="0" branch="false"/>
-								<line number="48" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="66" hits="0" branch="false"/>
+								<line number="67" hits="0" branch="false"/>
+								<line number="68" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="49" hits="0" branch="false"/>
-								<line number="50" hits="0" branch="false"/>
+								<line number="69" hits="0" branch="false"/>
+								<line number="70" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="41" hits="1" branch="false"/>
-						<line number="44" hits="0" branch="false"/>
-						<line number="45" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="61" hits="2" branch="false"/>
+						<line number="64" hits="0" branch="false"/>
+						<line number="65" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="46" hits="0" branch="false"/>
-						<line number="47" hits="0" branch="false"/>
-						<line number="48" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="66" hits="0" branch="false"/>
+						<line number="67" hits="0" branch="false"/>
+						<line number="68" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="49" hits="0" branch="false"/>
-						<line number="50" hits="0" branch="false"/>
+						<line number="69" hits="0" branch="false"/>
+						<line number="70" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$1$3" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="0.5" branch-rate="1.0" complexity="1.5">
+				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$2$2" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="0.5" branch-rate="1.0" complexity="1.4285714285714286">
 					<methods>
-						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin$1;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-						<method name="call" signature="()Ljava/io/File;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="57" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="call" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="54" hits="1" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="54" hits="1" branch="false"/>
-						<line number="57" hits="0" branch="false"/>
-					</lines>
-				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityPlugin$1$4" filename="org/anarres/gradle/plugin/velocity/VelocityPlugin.java" line-rate="0.5" branch-rate="1.0" complexity="1.5">
-					<methods>
-						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin$1;)V" line-rate="1.0" branch-rate="1.0">
+						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityPlugin$2;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
 							</lines>
 						</method>
 						<method name="call" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="61" hits="1" branch="false"/>
+								<line number="74" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="call" signature="()Ljava/util/Map;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="64" hits="0" branch="false"/>
+								<line number="77" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="61" hits="1" branch="false"/>
-						<line number="64" hits="0" branch="false"/>
+						<line number="74" hits="2" branch="false"/>
+						<line number="77" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityPluginExtension" filename="org/anarres/gradle/plugin/velocity/VelocityPluginExtension.java" line-rate="0.5" branch-rate="1.0" complexity="1.0">
+				<class name="org.anarres.gradle.plugin.velocity.VelocityPluginExtension" filename="org/anarres/gradle/plugin/velocity/VelocityPluginExtension.java" line-rate="0.375" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
 								<line number="17" hits="1" branch="false"/>
-								<line number="22" hits="1" branch="false"/>
-								<line number="23" hits="1" branch="false"/>
-								<line number="24" hits="1" branch="false"/>
-								<line number="25" hits="1" branch="false"/>
+								<line number="19" hits="1" branch="false"/>
+								<line number="20" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="context" signature="(Lgroovy/lang/Closure;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="0" branch="false"/>
-								<line number="39" hits="0" branch="false"/>
-								<line number="40" hits="0" branch="false"/>
+								<line number="27" hits="0" branch="false"/>
+								<line number="28" hits="0" branch="false"/>
+								<line number="29" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="context" signature="(Ljava/util/Map;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="34" hits="0" branch="false"/>
-								<line number="35" hits="0" branch="false"/>
+								<line number="23" hits="0" branch="false"/>
+								<line number="24" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
 						<line number="17" hits="1" branch="false"/>
-						<line number="22" hits="1" branch="false"/>
-						<line number="23" hits="1" branch="false"/>
-						<line number="24" hits="1" branch="false"/>
-						<line number="25" hits="1" branch="false"/>
-						<line number="34" hits="0" branch="false"/>
-						<line number="35" hits="0" branch="false"/>
-						<line number="38" hits="0" branch="false"/>
-						<line number="39" hits="0" branch="false"/>
-						<line number="40" hits="0" branch="false"/>
+						<line number="19" hits="1" branch="false"/>
+						<line number="20" hits="1" branch="false"/>
+						<line number="23" hits="0" branch="false"/>
+						<line number="24" hits="0" branch="false"/>
+						<line number="27" hits="0" branch="false"/>
+						<line number="28" hits="0" branch="false"/>
+						<line number="29" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityTask" filename="org/anarres/gradle/plugin/velocity/VelocityTask.java" line-rate="0.04" branch-rate="0.0" complexity="1.6666666666666667">
+				<class name="org.anarres.gradle.plugin.velocity.VelocitySourceSet" filename="org/anarres/gradle/plugin/velocity/VelocitySourceSet.java" line-rate="0.7142857142857143" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Lorg/gradle/api/internal/file/FileResolver;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="23" hits="2" branch="false"/>
+								<line number="24" hits="2" branch="false"/>
+								<line number="25" hits="2" branch="false"/>
+								<line number="26" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="getVelocity" signature="()Lorg/gradle/api/file/SourceDirectorySet;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="30" hits="6" branch="false"/>
+							</lines>
+						</method>
+						<method name="velocity" signature="(Lgroovy/lang/Closure;)Lorg/anarres/gradle/plugin/velocity/VelocitySourceSet;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="35" hits="0" branch="false"/>
+								<line number="36" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="23" hits="2" branch="false"/>
+						<line number="24" hits="2" branch="false"/>
+						<line number="25" hits="2" branch="false"/>
+						<line number="26" hits="2" branch="false"/>
+						<line number="30" hits="6" branch="false"/>
+						<line number="35" hits="0" branch="false"/>
+						<line number="36" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.anarres.gradle.plugin.velocity.VelocityTask" filename="org/anarres/gradle/plugin/velocity/VelocityTask.java" line-rate="0.05172413793103448" branch-rate="0.0" complexity="1.875">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="37" hits="1" branch="false"/>
-								<line number="42" hits="1" branch="false"/>
+								<line number="37" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="_getIncludeFiles" signature="()Lorg/gradle/api/file/FileCollection;" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="97" hits="0" branch="false"/>
-								<line number="98" hits="0" branch="false"/>
-								<line number="99" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="104" hits="0" branch="false"/>
+								<line number="105" hits="0" branch="false"/>
+								<line number="106" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="100" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="107" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="101" hits="0" branch="false"/>
-								<line number="102" hits="0" branch="false"/>
+								<line number="108" hits="0" branch="false"/>
+								<line number="109" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getContextValues" signature="()Ljava/util/Map;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="109" hits="0" branch="false"/>
+								<line number="116" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getIncludeDirs" signature="()Ljava/util/List;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="87" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="getIncludeFilter" signature="()[Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="69" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="getInputDir" signature="()Ljava/io/File;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="49" hits="0" branch="false"/>
+								<line number="94" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getOutputDir" signature="()Ljava/io/File;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="59" hits="0" branch="false"/>
+								<line number="58" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="runVelocity" signature="()V" line-rate="0.0" branch-rate="0.0">
+						<method name="runVelocity" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="124" hits="0" branch="false"/>
-								<line number="125" hits="0" branch="false"/>
-								<line number="127" hits="0" branch="false"/>
-								<line number="128" hits="0" branch="false"/>
-								<line number="130" hits="0" branch="false"/>
-								<line number="131" hits="0" branch="false"/>
-								<line number="132" hits="0" branch="false"/>
-								<line number="133" hits="0" branch="false"/>
-								<line number="135" hits="0" branch="false"/>
-								<line number="136" hits="0" branch="false"/>
-								<line number="137" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="138" hits="0" branch="false"/>
-								<line number="139" hits="0" branch="false"/>
-								<line number="140" hits="0" branch="false"/>
-								<line number="141" hits="0" branch="false"/>
-								<line number="143" hits="0" branch="false"/>
-								<line number="144" hits="0" branch="false"/>
-								<line number="145" hits="0" branch="false"/>
-								<line number="177" hits="0" branch="false"/>
+								<line number="154" hits="0" branch="false"/>
+								<line number="155" hits="0" branch="false"/>
+								<line number="157" hits="0" branch="false"/>
+								<line number="158" hits="0" branch="false"/>
+								<line number="160" hits="0" branch="false"/>
+								<line number="161" hits="0" branch="false"/>
+								<line number="162" hits="0" branch="false"/>
+								<line number="163" hits="0" branch="false"/>
+								<line number="165" hits="0" branch="false"/>
+								<line number="166" hits="0" branch="false"/>
+								<line number="167" hits="0" branch="false"/>
+								<line number="168" hits="0" branch="false"/>
+								<line number="170" hits="0" branch="false"/>
+								<line number="202" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="setContextValues" signature="(Ljava/util/Map;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="113" hits="0" branch="false"/>
-								<line number="114" hits="0" branch="false"/>
+								<line number="120" hits="0" branch="false"/>
+								<line number="121" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="setFilter" signature="(Ljava/lang/String;)V" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="77" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="84" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="78" hits="0" branch="false"/>
-								<line number="80" hits="0" branch="false"/>
-								<line number="81" hits="0" branch="false"/>
+								<line number="85" hits="0" branch="false"/>
+								<line number="87" hits="0" branch="false"/>
+								<line number="88" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="setIncludeDirs" signature="(Ljava/util/List;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="91" hits="0" branch="false"/>
-								<line number="92" hits="0" branch="false"/>
+								<line number="98" hits="0" branch="false"/>
+								<line number="99" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="setIncludeFilter" signature="([Ljava/lang/String;)V" line-rate="0.0" branch-rate="1.0">
@@ -338,87 +358,131 @@
 						</method>
 						<method name="setInputDir" signature="(Ljava/io/File;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
+								<line number="52" hits="0" branch="false"/>
 								<line number="53" hits="0" branch="false"/>
-								<line number="54" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="setOutputDir" signature="(Ljava/io/File;)V" line-rate="0.0" branch-rate="1.0">
+						<method name="setOutputDir" signature="(Ljava/io/File;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="63" hits="0" branch="false"/>
-								<line number="64" hits="0" branch="false"/>
+								<line number="62" hits="2" branch="false"/>
+								<line number="63" hits="2" branch="false"/>
 							</lines>
 						</method>
-						<method name="setProperty" signature="(Lorg/apache/velocity/app/VelocityEngine;Ljava/lang/String;Ljava/lang/Object;)V" line-rate="0.0" branch-rate="0.0">
+						<method name="setProperty" signature="(Lorg/apache/velocity/app/VelocityEngine;Ljava/lang/String;Ljava/lang/Object;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="117" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="124" hits="0" branch="false"/>
+								<line number="125" hits="0" branch="false"/>
+								<line number="126" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="toIncludeBufDir" signature="(Ljava/lang/StringBuilder;Ljava/io/File;)V" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="129" hits="0" branch="false"/>
+								<line number="130" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="118" hits="0" branch="false"/>
-								<line number="119" hits="0" branch="false"/>
-								<line number="120" hits="0" branch="false"/>
+								<line number="131" hits="0" branch="false"/>
+								<line number="132" hits="0" branch="false"/>
+								<line number="133" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="toIncludeBufDirs" signature="(Ljava/lang/StringBuilder;Ljava/lang/Iterable;)V" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="136" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="137" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="138" hits="0" branch="false"/>
+								<line number="139" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="toIncludeBufUnknown" signature="(Ljava/lang/StringBuilder;Ljava/lang/Iterable;)V" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="142" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="143" hits="0" branch="false"/>
+								<line number="144" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="145" hits="0" branch="false"/>
+								<line number="146" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="147" hits="0" branch="false"/>
+								<line number="149" hits="0" branch="false"/>
+								<line number="150" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="37" hits="1" branch="false"/>
-						<line number="42" hits="1" branch="false"/>
-						<line number="49" hits="0" branch="false"/>
+						<line number="37" hits="2" branch="false"/>
+						<line number="52" hits="0" branch="false"/>
 						<line number="53" hits="0" branch="false"/>
-						<line number="54" hits="0" branch="false"/>
-						<line number="59" hits="0" branch="false"/>
-						<line number="63" hits="0" branch="false"/>
-						<line number="64" hits="0" branch="false"/>
-						<line number="69" hits="0" branch="false"/>
+						<line number="58" hits="0" branch="false"/>
+						<line number="62" hits="2" branch="false"/>
+						<line number="63" hits="2" branch="false"/>
 						<line number="73" hits="0" branch="false"/>
 						<line number="74" hits="0" branch="false"/>
-						<line number="77" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="84" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="78" hits="0" branch="false"/>
-						<line number="80" hits="0" branch="false"/>
-						<line number="81" hits="0" branch="false"/>
+						<line number="85" hits="0" branch="false"/>
 						<line number="87" hits="0" branch="false"/>
-						<line number="91" hits="0" branch="false"/>
-						<line number="92" hits="0" branch="false"/>
-						<line number="97" hits="0" branch="false"/>
+						<line number="88" hits="0" branch="false"/>
+						<line number="94" hits="0" branch="false"/>
 						<line number="98" hits="0" branch="false"/>
-						<line number="99" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="99" hits="0" branch="false"/>
+						<line number="104" hits="0" branch="false"/>
+						<line number="105" hits="0" branch="false"/>
+						<line number="106" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="100" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="107" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="101" hits="0" branch="false"/>
-						<line number="102" hits="0" branch="false"/>
+						<line number="108" hits="0" branch="false"/>
 						<line number="109" hits="0" branch="false"/>
-						<line number="113" hits="0" branch="false"/>
-						<line number="114" hits="0" branch="false"/>
-						<line number="117" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="118" hits="0" branch="false"/>
-						<line number="119" hits="0" branch="false"/>
+						<line number="116" hits="0" branch="false"/>
 						<line number="120" hits="0" branch="false"/>
+						<line number="121" hits="0" branch="false"/>
 						<line number="124" hits="0" branch="false"/>
 						<line number="125" hits="0" branch="false"/>
-						<line number="127" hits="0" branch="false"/>
-						<line number="128" hits="0" branch="false"/>
-						<line number="130" hits="0" branch="false"/>
+						<line number="126" hits="0" branch="false"/>
+						<line number="129" hits="0" branch="false"/>
+						<line number="130" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
 						<line number="131" hits="0" branch="false"/>
 						<line number="132" hits="0" branch="false"/>
 						<line number="133" hits="0" branch="false"/>
-						<line number="135" hits="0" branch="false"/>
-						<line number="136" hits="0" branch="false"/>
+						<line number="136" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
 						<line number="137" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
@@ -426,98 +490,126 @@
 						</line>
 						<line number="138" hits="0" branch="false"/>
 						<line number="139" hits="0" branch="false"/>
-						<line number="140" hits="0" branch="false"/>
-						<line number="141" hits="0" branch="false"/>
+						<line number="142" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
 						<line number="143" hits="0" branch="false"/>
-						<line number="144" hits="0" branch="false"/>
+						<line number="144" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
 						<line number="145" hits="0" branch="false"/>
-						<line number="177" hits="0" branch="false"/>
+						<line number="146" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="147" hits="0" branch="false"/>
+						<line number="149" hits="0" branch="false"/>
+						<line number="150" hits="0" branch="false"/>
+						<line number="154" hits="0" branch="false"/>
+						<line number="155" hits="0" branch="false"/>
+						<line number="157" hits="0" branch="false"/>
+						<line number="158" hits="0" branch="false"/>
+						<line number="160" hits="0" branch="false"/>
+						<line number="161" hits="0" branch="false"/>
+						<line number="162" hits="0" branch="false"/>
+						<line number="163" hits="0" branch="false"/>
+						<line number="165" hits="0" branch="false"/>
+						<line number="166" hits="0" branch="false"/>
+						<line number="167" hits="0" branch="false"/>
+						<line number="168" hits="0" branch="false"/>
+						<line number="170" hits="0" branch="false"/>
+						<line number="202" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.anarres.gradle.plugin.velocity.VelocityTask$1" filename="org/anarres/gradle/plugin/velocity/VelocityTask.java" line-rate="0.0" branch-rate="0.0" complexity="1.6666666666666667">
+				<class name="org.anarres.gradle.plugin.velocity.VelocityTask$1" filename="org/anarres/gradle/plugin/velocity/VelocityTask.java" line-rate="0.0" branch-rate="0.0" complexity="1.875">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lorg/anarres/gradle/plugin/velocity/VelocityTask;Ljava/io/File;Lorg/apache/velocity/app/VelocityEngine;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="145" hits="0" branch="false"/>
+								<line number="170" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="visitFile" signature="(Lorg/gradle/api/file/FileVisitDetails;)V" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="149" hits="0" branch="false"/>
-								<line number="150" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="151" hits="0" branch="false"/>
-								<line number="152" hits="0" branch="false"/>
-								<line number="153" hits="0" branch="false"/>
-								<line number="154" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="155" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="156" hits="0" branch="false"/>
-								<line number="157" hits="0" branch="false"/>
-								<line number="158" hits="0" branch="false"/>
-								<line number="159" hits="0" branch="false"/>
-								<line number="160" hits="0" branch="false"/>
-								<line number="162" hits="0" branch="false"/>
-								<line number="163" hits="0" branch="false"/>
-								<line number="165" hits="0" branch="false"/>
-								<line number="167" hits="0" branch="false"/>
-								<line number="168" hits="0" branch="false"/>
-								<line number="170" hits="0" branch="false"/>
-								<line number="171" hits="0" branch="false"/>
-								<line number="172" hits="0" branch="false"/>
-								<line number="173" hits="0" branch="false"/>
 								<line number="174" hits="0" branch="false"/>
-								<line number="175" hits="0" branch="false"/>
+								<line number="175" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="176" hits="0" branch="false"/>
+								<line number="177" hits="0" branch="false"/>
+								<line number="178" hits="0" branch="false"/>
+								<line number="179" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="180" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="181" hits="0" branch="false"/>
+								<line number="182" hits="0" branch="false"/>
+								<line number="183" hits="0" branch="false"/>
+								<line number="184" hits="0" branch="false"/>
+								<line number="185" hits="0" branch="false"/>
+								<line number="187" hits="0" branch="false"/>
+								<line number="188" hits="0" branch="false"/>
+								<line number="190" hits="0" branch="false"/>
+								<line number="192" hits="0" branch="false"/>
+								<line number="193" hits="0" branch="false"/>
+								<line number="195" hits="0" branch="false"/>
+								<line number="196" hits="0" branch="false"/>
+								<line number="197" hits="0" branch="false"/>
+								<line number="198" hits="0" branch="false"/>
+								<line number="199" hits="0" branch="false"/>
+								<line number="200" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="145" hits="0" branch="false"/>
-						<line number="149" hits="0" branch="false"/>
-						<line number="150" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="151" hits="0" branch="false"/>
-						<line number="152" hits="0" branch="false"/>
-						<line number="153" hits="0" branch="false"/>
-						<line number="154" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="155" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="156" hits="0" branch="false"/>
-						<line number="157" hits="0" branch="false"/>
-						<line number="158" hits="0" branch="false"/>
-						<line number="159" hits="0" branch="false"/>
-						<line number="160" hits="0" branch="false"/>
-						<line number="162" hits="0" branch="false"/>
-						<line number="163" hits="0" branch="false"/>
-						<line number="165" hits="0" branch="false"/>
-						<line number="167" hits="0" branch="false"/>
-						<line number="168" hits="0" branch="false"/>
 						<line number="170" hits="0" branch="false"/>
-						<line number="171" hits="0" branch="false"/>
-						<line number="172" hits="0" branch="false"/>
-						<line number="173" hits="0" branch="false"/>
 						<line number="174" hits="0" branch="false"/>
-						<line number="175" hits="0" branch="false"/>
+						<line number="175" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="176" hits="0" branch="false"/>
+						<line number="177" hits="0" branch="false"/>
+						<line number="178" hits="0" branch="false"/>
+						<line number="179" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="180" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="181" hits="0" branch="false"/>
+						<line number="182" hits="0" branch="false"/>
+						<line number="183" hits="0" branch="false"/>
+						<line number="184" hits="0" branch="false"/>
+						<line number="185" hits="0" branch="false"/>
+						<line number="187" hits="0" branch="false"/>
+						<line number="188" hits="0" branch="false"/>
+						<line number="190" hits="0" branch="false"/>
+						<line number="192" hits="0" branch="false"/>
+						<line number="193" hits="0" branch="false"/>
+						<line number="195" hits="0" branch="false"/>
+						<line number="196" hits="0" branch="false"/>
+						<line number="197" hits="0" branch="false"/>
+						<line number="198" hits="0" branch="false"/>
+						<line number="199" hits="0" branch="false"/>
+						<line number="200" hits="0" branch="false"/>
 					</lines>
 				</class>
 			</classes>
