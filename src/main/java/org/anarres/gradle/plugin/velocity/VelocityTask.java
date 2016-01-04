@@ -65,7 +65,7 @@ public class VelocityTask extends SourceTask {
     /**
      * Use {@link SourceTask#include(java.lang.String...)}.
      *
-     * @param inputDir The input filename filter.
+     * @param includeFilter The input filename filter.
      * @deprecated Use {@link SourceTask#include(java.lang.String...)}.
      */
     @Deprecated
@@ -76,7 +76,7 @@ public class VelocityTask extends SourceTask {
     /**
      * Use {@link SourceTask#include(java.lang.String...)}.
      *
-     * @param inputDir The input filename filter.
+     * @param filter The input filename filter.
      * @deprecated Use {@link SourceTask#include(java.lang.String...)}.
      */
     @Deprecated
