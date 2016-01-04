@@ -14,16 +14,16 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.log.SystemLogChute;
 import org.codehaus.groovy.runtime.DefaultGroovyMethods;
 import org.gradle.api.GradleException;
-import org.gradle.api.file.ConfigurableFileTree;
 import org.gradle.api.file.EmptyFileVisitor;
 import org.gradle.api.file.FileCollection;
+import org.gradle.api.file.FileTree;
 import org.gradle.api.file.FileVisitDetails;
-import org.gradle.api.internal.ConventionTask;
+import org.gradle.api.file.SourceDirectorySet;
 import org.gradle.api.tasks.Input;
-import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.InputFiles;
 import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.OutputDirectory;
+import org.gradle.api.tasks.SourceTask;
 import org.gradle.api.tasks.TaskAction;
 
 /**
@@ -34,23 +34,22 @@ import org.gradle.api.tasks.TaskAction;
  *
  * @author shevek
  */
-public class VelocityTask extends ConventionTask {
+public class VelocityTask extends SourceTask {
 
-    private File inputDir;
     private File outputDir;
 
-    private String[] includeFilter = new String[]{"**/*.java"};
     private List<File> includeDirs;
     private Map<String, Object> contextValues;
 
-    @InputDirectory
-    @Nonnull    // Not @Optional
-    public File getInputDir() {
-        return inputDir;
-    }
-
+    /**
+     * Use {@link SourceTask#setSource(java.lang.Object)}.
+     *
+     * @param inputDir The input directory.
+     * @deprecated Use {@link SourceTask#setSource(java.lang.Object)}.
+     */
+    @Deprecated // Use setSource() from SourceTask.
     public void setInputDir(@Nonnull File inputDir) {
-        this.inputDir = inputDir;
+        setSource(inputDir);
     }
 
     @OutputDirectory
@@ -63,16 +62,24 @@ public class VelocityTask extends ConventionTask {
         this.outputDir = outputDir;
     }
 
-    @Input
-    @Nonnull
-    public String[] getIncludeFilter() {
-        return includeFilter;
-    }
-
+    /**
+     * Use {@link SourceTask#include(java.lang.String...)}.
+     *
+     * @param inputDir The input filename filter.
+     * @deprecated Use {@link SourceTask#include(java.lang.String...)}.
+     */
+    @Deprecated
     public void setIncludeFilter(@Nonnull String... includeFilter) {
-        this.includeFilter = includeFilter;
+        include(includeFilter);
     }
 
+    /**
+     * Use {@link SourceTask#include(java.lang.String...)}.
+     *
+     * @param inputDir The input filename filter.
+     * @deprecated Use {@link SourceTask#include(java.lang.String...)}.
+     */
+    @Deprecated
     public void setFilter(@CheckForNull String filter) {
         if (filter == null)
             setIncludeFilter(ArrayUtils.EMPTY_STRING_ARRAY);
@@ -114,14 +121,37 @@ public class VelocityTask extends ConventionTask {
     }
 
     private void setProperty(VelocityEngine engine, String name, Object value) {
-        if (getLogger().isDebugEnabled())
-            getLogger().debug("VelocityEngine property: " + name + " = " + value);
+        getLogger().info("VelocityEngine property: " + name + " = " + value);
         engine.setProperty(name, value);
+    }
+
+    private void toIncludeBufDir(@Nonnull StringBuilder includeBuf, @Nonnull File dir) {
+        getLogger().info("Including dir " + dir);
+        if (includeBuf.length() > 0)
+            includeBuf.append(", ");
+        includeBuf.append(dir.getAbsolutePath());
+    }
+
+    private void toIncludeBufDirs(@Nonnull StringBuilder includeBuf, @CheckForNull Iterable<File> dirs) {
+        if (dirs != null)
+            for (File dir : dirs)
+                toIncludeBufDir(includeBuf, dir);
+    }
+
+    private void toIncludeBufUnknown(@Nonnull StringBuilder includeBuf, @Nonnull Iterable<Object> sources) {
+        for (Object source : sources) {
+            getLogger().info("Attepmting to include " + source.getClass() + ":" + source);
+            if (source instanceof File)
+                toIncludeBufDir(includeBuf, (File) source);
+            else if (source instanceof SourceDirectorySet)
+                toIncludeBufDirs(includeBuf, ((SourceDirectorySet) source).getSrcDirs());
+            // I wish we could introspect CompositeFileTree.
+        }
     }
 
     @TaskAction
     public void runVelocity() throws Exception {
-        final File inputDir = getInputDir();
+        final FileTree inputFiles = getSource();
         final File outputDir = getOutputDir();
 
         DefaultGroovyMethods.deleteDir(outputDir);
@@ -133,15 +163,10 @@ public class VelocityTask extends ConventionTask {
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
         // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list. 
         StringBuilder includeBuf = new StringBuilder();
-        includeBuf.append(inputDir.getAbsolutePath());
-        for (File includeDir : getIncludeDirs()) {
-            includeBuf.append(", ");
-            includeBuf.append(includeDir.getAbsolutePath());
-        }
+        toIncludeBufUnknown(includeBuf, source);
+        toIncludeBufDirs(includeBuf, getIncludeDirs());
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeBuf.toString());
 
-        ConfigurableFileTree inputFiles = getProject().fileTree(inputDir);
-        inputFiles.include(getIncludeFilter());
         inputFiles.visit(new EmptyFileVisitor() {
             @Override
             public void visitFile(FileVisitDetails fvd) {

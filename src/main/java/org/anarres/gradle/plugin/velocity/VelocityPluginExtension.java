@@ -16,19 +16,8 @@ import java.util.Map;
  */
 public class VelocityPluginExtension {
 
-    public static final String DEFAULT_INPUT_DIR = "src/main/velocity";
-    public static final String DEFAULT_OUTPUT_DIR = "build/generated-sources/velocity";
-
-    public Object inputDir = DEFAULT_INPUT_DIR;
-    public Object outputDir = DEFAULT_OUTPUT_DIR;
     public List<Object> includeDirs = new ArrayList<Object>();
     public Map<String, Object> contextValues = new HashMap<String, Object>();
-
-    /*
-    public Map<String, Object> getContext() {
-        return contextValues;
-    }
-    */
 
     void context(Map<String, Object> map) {
         contextValues.putAll(map);

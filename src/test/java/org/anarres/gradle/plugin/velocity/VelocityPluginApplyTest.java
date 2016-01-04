@@ -27,7 +27,7 @@ public class VelocityPluginApplyTest {
         project.apply(Collections.singletonMap("plugin", "java"));
         project.apply(Collections.singletonMap("plugin", "velocity"));
         assertTrue("Project is missing plugin", project.getPlugins().hasPlugin(VelocityPlugin.class));
-        Task task = project.getTasks().findByName("velocityVpp");
+        Task task = project.getTasks().findByName("processVelocity");
         assertNotNull("Project is missing velocity task", task);
         assertTrue("Velocity task is the wrong type", task instanceof DefaultTask);
         assertTrue("Velocity task should be enabled", ((DefaultTask) task).isEnabled());
