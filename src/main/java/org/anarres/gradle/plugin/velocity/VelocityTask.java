@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.log.SystemLogChute;
@@ -36,21 +35,37 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class VelocityTask extends SourceTask {
 
+    private static interface Collector {
+
+        public void accept(@Nonnull File dir);
+    }
+
+    private static class IncludePathCollector implements Collector {
+
+        private final StringBuilder out = new StringBuilder();
+
+        @Override
+        public void accept(File dir) {
+            if (out.length() > 0)
+                out.append(", ");
+            out.append(dir.getAbsolutePath());
+        }
+    }
+
+    private class IncludeFileCollector implements Collector {
+
+        private FileCollection out = getProject().files();
+
+        @Override
+        public void accept(File dir) {
+            out = out.plus(getProject().fileTree(dir));
+        }
+    }
+
     private File outputDir;
 
     private List<File> includeDirs;
     private Map<String, Object> contextValues;
-
-    /**
-     * Use {@link SourceTask#setSource(java.lang.Object)}.
-     *
-     * @param inputDir The input directory.
-     * @deprecated Use {@link SourceTask#setSource(java.lang.Object)}.
-     */
-    @Deprecated // Use setSource() from SourceTask.
-    public void setInputDir(@Nonnull File inputDir) {
-        setSource(inputDir);
-    }
 
     @OutputDirectory
     @Nonnull    // Not @Optional
@@ -62,31 +77,6 @@ public class VelocityTask extends SourceTask {
         this.outputDir = outputDir;
     }
 
-    /**
-     * Use {@link SourceTask#include(java.lang.String...)}.
-     *
-     * @param includeFilter The input filename filter.
-     * @deprecated Use {@link SourceTask#include(java.lang.String...)}.
-     */
-    @Deprecated
-    public void setIncludeFilter(@Nonnull String... includeFilter) {
-        include(includeFilter);
-    }
-
-    /**
-     * Use {@link SourceTask#include(java.lang.String...)}.
-     *
-     * @param filter The input filename filter.
-     * @deprecated Use {@link SourceTask#include(java.lang.String...)}.
-     */
-    @Deprecated
-    public void setFilter(@CheckForNull String filter) {
-        if (filter == null)
-            setIncludeFilter(ArrayUtils.EMPTY_STRING_ARRAY);
-        else
-            setIncludeFilter(new String[]{filter});
-    }
-
     @Input
     @Optional
     @CheckForNull
@@ -96,17 +86,6 @@ public class VelocityTask extends SourceTask {
 
     public void setIncludeDirs(@Nonnull List<File> includeDirs) {
         this.includeDirs = includeDirs;
-    }
-
-    @InputFiles
-    @Nonnull    // Not @Optional
-    private FileCollection _getIncludeFiles() {
-        FileCollection files = getProject().files();
-        List<File> includeDirs = getIncludeDirs();
-        if (includeDirs != null)
-            for (File f : includeDirs)
-                files = files.plus(getProject().fileTree(f));
-        return files;
     }
 
     @Input
@@ -125,28 +104,37 @@ public class VelocityTask extends SourceTask {
         engine.setProperty(name, value);
     }
 
-    private void toIncludeBufDir(@Nonnull StringBuilder includeBuf, @Nonnull File dir) {
-        getLogger().info("Including dir " + dir);
-        if (includeBuf.length() > 0)
-            includeBuf.append(", ");
-        includeBuf.append(dir.getAbsolutePath());
+    private void collectDir(@Nonnull Collector collector, @Nonnull File dir) {
+        getLogger().info("Collecting dir " + dir);
+        collector.accept(dir);
     }
 
-    private void toIncludeBufDirs(@Nonnull StringBuilder includeBuf, @CheckForNull Iterable<File> dirs) {
+    private void collectDirs(@Nonnull Collector collector, @CheckForNull Iterable<File> dirs) {
         if (dirs != null)
             for (File dir : dirs)
-                toIncludeBufDir(includeBuf, dir);
+                collectDir(collector, dir);
     }
 
-    private void toIncludeBufUnknown(@Nonnull StringBuilder includeBuf, @Nonnull Iterable<Object> sources) {
+    private void collectUnknown(@Nonnull Collector collector, @Nonnull Iterable<Object> sources) {
         for (Object source : sources) {
-            getLogger().info("Attepmting to include " + source.getClass() + ":" + source);
+            getLogger().info("Attepmting to collect " + source.getClass() + ":" + source);
             if (source instanceof File)
-                toIncludeBufDir(includeBuf, (File) source);
+                collectDir(collector, (File) source);
             else if (source instanceof SourceDirectorySet)
-                toIncludeBufDirs(includeBuf, ((SourceDirectorySet) source).getSrcDirs());
+                collectDirs(collector, ((SourceDirectorySet) source).getSrcDirs());
             // I wish we could introspect CompositeFileTree.
         }
+    }
+
+    @InputFiles
+    @Nonnull    // Not @Optional
+    private FileCollection getIncludeFiles() {
+        IncludeFileCollector collector = new IncludeFileCollector();
+        collectUnknown(collector, source);
+        collectDirs(collector, getIncludeDirs());
+        for (File file : collector.out)
+            getLogger().info("Including " + file);
+        return collector.out;
     }
 
     @TaskAction
@@ -162,10 +150,10 @@ public class VelocityTask extends SourceTask {
         setProperty(engine, VelocityEngine.RESOURCE_LOADER, "file");
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
         // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list. 
-        StringBuilder includeBuf = new StringBuilder();
-        toIncludeBufUnknown(includeBuf, source);
-        toIncludeBufDirs(includeBuf, getIncludeDirs());
-        setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, includeBuf.toString());
+        IncludePathCollector collector = new IncludePathCollector();
+        collectUnknown(collector, source);
+        collectDirs(collector, getIncludeDirs());
+        setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, collector.out.toString());
 
         inputFiles.visit(new EmptyFileVisitor() {
             @Override
