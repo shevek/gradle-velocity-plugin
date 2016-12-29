@@ -23,4 +23,10 @@ apply from: file('gradle/plugin.gradle')
 dependencies {
 	compile gradleApi()
 	compile 'org.apache.velocity:velocity:1.7'
+	compile ("org.apache.velocity:velocity-tools:2.0") {
+		exclude group: 'log4j', module: 'log4j'
+		exclude group: 'logkit', module: 'logkit'
+		exclude group: 'avalon-framework', module: 'avalon-framework'
+		exclude group: 'javax.servlet', module: 'servlet-api'
+	}
 }
