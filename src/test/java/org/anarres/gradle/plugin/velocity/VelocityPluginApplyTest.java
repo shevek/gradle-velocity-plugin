@@ -25,7 +25,7 @@ public class VelocityPluginApplyTest {
     @Test
     public void testApply() {
         project.apply(Collections.singletonMap("plugin", "java"));
-        project.apply(Collections.singletonMap("plugin", "velocity"));
+        project.apply(Collections.singletonMap("plugin", "org.anarres.velocity"));
         assertTrue("Project is missing plugin", project.getPlugins().hasPlugin(VelocityPlugin.class));
         Task task = project.getTasks().findByName("processVelocity");
         assertNotNull("Project is missing velocity task", task);
