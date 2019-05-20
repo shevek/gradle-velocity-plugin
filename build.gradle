@@ -7,7 +7,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'org.anarres.gradle:gradle-stdproject-plugin:1.0.8'
+		classpath 'org.anarres.gradle:gradle-stdproject-plugin:1.0.9'
 	}
 }
 
@@ -37,8 +37,4 @@ dependencies {
 		exclude group: 'avalon-framework', module: 'avalon-framework'
 		exclude group: 'javax.servlet', module: 'servlet-api'
 	}
-}
-
-animalsniffer {
-	skip = true
 }
