@@ -138,7 +138,7 @@ public class VelocityTask extends SourceTask {
     @InputFiles
     @PathSensitive(PathSensitivity.RELATIVE)
     @Nonnull    // Not @Optional
-    private FileCollection getIncludeFiles() {
+    /* pp */ FileCollection getIncludeFiles() {
         getSource();
         IncludeFileCollector collector = new IncludeFileCollector();
         collectUnknown(collector, getSource());
