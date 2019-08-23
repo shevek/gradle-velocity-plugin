@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.CheckForNull;
@@ -15,13 +18,15 @@ import org.codehaus.groovy.runtime.DefaultGroovyMethods;
 import org.gradle.api.GradleException;
 import org.gradle.api.file.EmptyFileVisitor;
 import org.gradle.api.file.FileCollection;
+import org.gradle.api.file.FileSystemLocation;
 import org.gradle.api.file.FileTree;
 import org.gradle.api.file.FileVisitDetails;
-import org.gradle.api.file.SourceDirectorySet;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputFiles;
 import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.OutputDirectory;
+import org.gradle.api.tasks.PathSensitive;
+import org.gradle.api.tasks.PathSensitivity;
 import org.gradle.api.tasks.SourceTask;
 import org.gradle.api.tasks.TaskAction;
 
@@ -64,8 +69,8 @@ public class VelocityTask extends SourceTask {
 
     private File outputDir;
 
-    private List<File> includeDirs;
-    private Map<String, Object> contextValues;
+    private List<File> includeDirs = new ArrayList<>();
+    private Map<String, Object> contextValues = new HashMap<>();
 
     @OutputDirectory
     @Nonnull    // Not @Optional
@@ -84,8 +89,8 @@ public class VelocityTask extends SourceTask {
         return includeDirs;
     }
 
-    public void setIncludeDirs(@Nonnull List<File> includeDirs) {
-        this.includeDirs = includeDirs;
+    public void setIncludeDirs(@Nonnull List<? extends File> includeDirs) {
+        this.includeDirs = new ArrayList<File>(includeDirs);
     }
 
     @Input
@@ -95,8 +100,15 @@ public class VelocityTask extends SourceTask {
         return contextValues;
     }
 
-    public void setContextValues(@Nonnull Map<String, Object> contextValues) {
-        this.contextValues = contextValues;
+    public void setContextValues(@Nonnull Map<? extends String, ? extends Object> contextValues) {
+        this.contextValues = new HashMap<String, Object>(contextValues);
+    }
+
+    public void contextValue(@Nonnull String key, @CheckForNull Object value) {
+        if (value == null)
+            contextValues.remove(key);
+        else
+            contextValues.put(key, value);
     }
 
     private void setProperty(VelocityEngine engine, String name, Object value) {
@@ -115,22 +127,21 @@ public class VelocityTask extends SourceTask {
                 collectDir(collector, dir);
     }
 
-    private void collectUnknown(@Nonnull Collector collector, @Nonnull Iterable<Object> sources) {
-        for (Object source : sources) {
-            getLogger().info("Attepmting to collect " + source.getClass() + ":" + source);
-            if (source instanceof File)
-                collectDir(collector, (File) source);
-            else if (source instanceof SourceDirectorySet)
-                collectDirs(collector, ((SourceDirectorySet) source).getSrcDirs());
-            // I wish we could introspect CompositeFileTree.
+    private void collectUnknown(@Nonnull final Collector collector, @Nonnull FileTree source) {
+        getLogger().info("Attempting to collect " + source.getClass() + ":" + source);
+        for (FileSystemLocation location : source.getElements().getOrElse(Collections.<FileSystemLocation>emptySet())) {
+            getLogger().info("Attempting to add " + location.getClass() + ":" + location);
+            collector.accept(location.getAsFile());
         }
     }
 
     @InputFiles
+    @PathSensitive(PathSensitivity.RELATIVE)
     @Nonnull    // Not @Optional
     private FileCollection getIncludeFiles() {
+        getSource();
         IncludeFileCollector collector = new IncludeFileCollector();
-        collectUnknown(collector, source);
+        collectUnknown(collector, getSource());
         collectDirs(collector, getIncludeDirs());
         for (File file : collector.out)
             getLogger().info("Including " + file);
@@ -151,7 +162,7 @@ public class VelocityTask extends SourceTask {
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_CACHE, "true");
         // FILE_RESOURCE_LOADER_PATH actually takes a comma separated list. 
         IncludePathCollector collector = new IncludePathCollector();
-        collectUnknown(collector, source);
+        collectUnknown(collector, getSource());
         collectDirs(collector, getIncludeDirs());
         setProperty(engine, VelocityEngine.FILE_RESOURCE_LOADER_PATH, collector.out.toString());
 

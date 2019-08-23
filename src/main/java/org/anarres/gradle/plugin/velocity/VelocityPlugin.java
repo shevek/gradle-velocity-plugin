@@ -12,6 +12,8 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.internal.file.FileResolver;
 import org.gradle.api.internal.plugins.DslObject;
+import org.gradle.api.model.ObjectFactory;
+import org.gradle.api.plugins.JavaBasePlugin;
 import org.gradle.api.plugins.JavaPluginConvention;
 import org.gradle.api.tasks.SourceSet;
 
@@ -25,15 +27,17 @@ import org.gradle.api.tasks.SourceSet;
  */
 public class VelocityPlugin implements Plugin<Project> {
 
-    private final FileResolver fileResolver;
+    private final ObjectFactory objectFactory;
 
     @Inject
-    public VelocityPlugin(FileResolver fileResolver) {
-        this.fileResolver = fileResolver;
+    public VelocityPlugin(ObjectFactory objectFactory) {
+        this.objectFactory = objectFactory;
     }
 
     @Override
     public void apply(final Project project) {
+        project.getPlugins().apply(JavaBasePlugin.class);
+
         final VelocityPluginExtension extension = project.getExtensions().create("velocity", VelocityPluginExtension.class);
 
         project.getConvention().getPlugin(JavaPluginConvention.class).getSourceSets().all(
@@ -46,7 +50,7 @@ public class VelocityPlugin implements Plugin<Project> {
     }
 
     private void apply(@Nonnull final Project project, @Nonnull SourceSet sourceSet, @Nonnull final VelocityPluginExtension extension) {
-        final VelocitySourceSet velocitySourceSet = new VelocitySourceSet(sourceSet.getName(), fileResolver);
+        final VelocitySourceVirtualDirectory velocitySourceSet = new VelocitySourceVirtualDirectory(sourceSet.getName(), objectFactory);
         new DslObject(sourceSet).getConvention().getPlugins().put("velocity", velocitySourceSet);
         final String srcDir = String.format("src/%s/velocity", sourceSet.getName());
         velocitySourceSet.getVelocity().srcDir(srcDir);

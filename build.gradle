@@ -3,11 +3,12 @@ buildscript {
 		mavenLocal()
 		mavenCentral()
 		jcenter()
+		gradlePluginPortal()
 		// maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 	}
 
 	dependencies {
-		classpath 'org.anarres.gradle:gradle-stdproject-plugin:1.0.9'
+		classpath 'org.anarres.gradle:gradle-stdproject-plugin:1.0.10'
 	}
 }
 
@@ -28,8 +29,11 @@ sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
 dependencies {
-	compile gradleApi()
-	compile 'com.google.code.findbugs:annotations:3.0.1'
+	implementation gradleApi()
+	implementation localGroovy()
+
+	implementation 'com.google.code.findbugs:annotations:3.0.1'
+
 	compile 'org.apache.velocity:velocity:1.7'
 	compile ("org.apache.velocity:velocity-tools:2.0") {
 		exclude group: 'log4j', module: 'log4j'
@@ -37,4 +41,6 @@ dependencies {
 		exclude group: 'avalon-framework', module: 'avalon-framework'
 		exclude group: 'javax.servlet', module: 'servlet-api'
 	}
+
+	testCompile 'com.google.guava:guava:27.1-jre'
 }
