@@ -1,9 +1,16 @@
 package org.anarres.gradle.plugin.velocity;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -181,17 +188,14 @@ public class VelocityTask extends SourceTask {
                     context.put("project", getProject());
                     context.put("package", DefaultGroovyMethods.join(fvd.getRelativePath().getParent().getSegments(), "."));
                     context.put("class", fvd.getRelativePath().getLastName().replaceFirst("\\.java$", ""));
-                    FileReader reader = new FileReader(fvd.getFile());
-                    try {
-                        outputFile.getParentFile().mkdirs();
-                        FileWriter writer = new FileWriter(outputFile);
-                        try {
-                            engine.evaluate(context, writer, fvd.getRelativePath().toString(), reader);
-                        } finally {
-                            writer.close();
-                        }
-                    } finally {
-                        reader.close();
+                    outputFile.getParentFile().mkdirs();
+
+                    try (
+                            InputStream in = new FileInputStream(fvd.getFile());
+                            Reader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
+                            OutputStream out = new FileOutputStream(outputFile);
+                            Writer writer = new OutputStreamWriter(out, StandardCharsets.UTF_8)) {
+                        engine.evaluate(context, writer, fvd.getRelativePath().toString(), reader);
                     }
                 } catch (IOException e) {
                     throw new GradleException("Failed to process " + fvd, e);
